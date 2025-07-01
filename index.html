@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Besoin d’un pseudo qui déchire ? Génère des centaines de blazes stylés, drôles, futuristes, sigma, ou cringe. Clique, trouve, brille !" />
+  <title>Générateur de Pseudos multi-modes enrichi</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0e0e0e;
+      color: #fff;
+      text-align: center;
+      padding: 60px;
+      transition: background 0.5s;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    #pseudo {
+      font-size: 2.2rem;
+      margin: 30px 0;
+      color: #1effa3;
+      transition: color 0.5s;
+      min-height: 50px;
+      word-wrap: break-word;
+    }
+    button {
+      background: #1effa3;
+      border: none;
+      padding: 10px 18px;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 4px;
+      transition: background 0.3s;
+      min-width: 110px;
+    }
+    button:hover {
+      background: #14cc85;
+    }
+    button.active {
+      background: #14cc85;
+      font-weight: bold;
+    }
+    /* Couleurs par mode */
+    body.classique-mode #pseudo { color: #1effa3; }
+    body.sigma-mode {
+      background: #070707;
+    }
+    body.sigma-mode #pseudo {
+      color: #66ccff;
+      font-weight: 700;
+      font-family: 'Consolas', monospace;
+    }
+    body.filles-mode #pseudo { color: #ff77cc; }
+    body.humour-mode #pseudo { color: #ffb347; }
+    body.personnage-mode #pseudo { color: #ff5555; }
+    body.celebrites-mode #pseudo { color: #55ffff; }
+    body.digital-mode #pseudo { color: #aaaaff; }
+    body.cringe-mode #pseudo { color: #ff6699; }
+
+    /* Conteneur boutons mode */
+    #modeButtons {
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body class="classique-mode">
+  <h1>?? Générateur de Pseudos multi-modes enrichi ??</h1>
+
+  <div id="pseudo">Clique pour générer un blaze</div>
+
+  <div id="modeButtons">
+    <button id="btnClassique" class="active" onclick="setMode('classique')">Classique</button>
+    <button id="btnSigma" onclick="setMode('sigma')">Sigma</button>
+    <button id="btnFilles" onclick="setMode('filles')">Filles</button>
+    <button id="btnHumour" onclick="setMode('humour')">Humour</button>
+    <button id="btnPersonnage" onclick="setMode('personnage')">Personnage</button>
+    <button id="btnCelebrites" onclick="setMode('celebrites')">Célébrités</button>
+    <button id="btnDigital" onclick="setMode('digital')">Digital</button>
+    <button id="btnCringe" onclick="setMode('cringe')">Cringe</button>
+  </div>
+
+  <button onclick="generate()" id="generateBtn" style="margin-top:20px;">Générer un blaze</button>
+
+  <script>
+    const pseudos = {
+      classique: [
+        "lvna.rose", "vxnia", "cryssette", "shokko.mp4", "mirälyn", "naeclipse",
+        "s0ul.babe", "dahlia.kvn", "angelglitch", "ellie.vibe", "vxminelle", "bloom404",
+        "bîtsune", "melancholia", ".mira.noir", "vanityvoid", "yume.nox", "sierra.fury",
+        "noirwïfe", "serene.kills", "MakimaMood", "LadyShhh", "JolieMensonge", "Madame404",
+        "VenusTrouble", "Miss.Spectra", "CalmeFatale", "Nikita.exe", "RoseFroide", "SyrënaX",
+        "Mentalina", "MortelleFée", "DollZéro", "VioletteCinglée", "Bitch.In.Plans",
+        "DemoiselleDesTénèbres", "EllieMania", "Miss.Cauchemar", "IceBloom", "Cruelessa",
+        "zvx.kaïro", "kriizenn", "moonera", "rîko.void", "myzt.kvn", "cryvx.mp4",
+        "hxlio.snk", "lvna.xeon", "dèmøn.chill", "stormei", "Vantaire", "Lord Mirage",
+        "Noxys", "WhisperX", "ZéroSympa", "Tracelune", "Éclipse Noire", "Sîlenza",
+        "VertigeRouge", "Hex de Toi", "Chessmove", "VoxMentis", "SigmaMind", "Doubt.exe",
+        "Stratégik", "L’Architecte", "Tactix", "Paranoïx", "ThéoRik", "Influenceur Z",
+        "Cry0byte", "Neon.exe", "SpectraX", "Datalux", "NX-404", "VirusZéro",
+        "Obsolète V2", ".Nyctis", "Loop404", "Plasmik", "Zbeulman", "Kékekévin",
+        "Paul à Gomme", "Ton.pseudo.est.mieux", "Dripfond", "Brizox le Crac",
+        "Jean-Mi Vortex", "FauxZlatan", "Lourdimal", "Golri.exe", "MeilleurApparence",
+        "KyoNoPlan", "S.Goodmood", "Koji.LeSilencieux", "YagamiMood", "Invincibel",
+        "SaulvéTaVie", "FringZone", "L’hommeSansNom", "Sato.rx", "GarçonSansFaille",
+        "L’InconnuCalm", "ColdMove", "Jokerrique", "L’ActeurPrincipal", "LeManiement",
+        "TêtePensante", "Ayano.kage", "MisterShh", "KojiVisage"
+      ],
+      sigma: [
+        "CalculZéro", "Koji.exe", "SigmaShell", "ChessAlpha", "DéterminéSansToi",
+        "Stratégor", "VisionnaireX", "L’Infiltré", "MuteLeader", "VoxMuet",
+        "NuitSansLoi", "ColdInstinct", "HommeInvisible", "TrôneSilencieux",
+        "EyelessMove", "AbsencePrésente", "SilenceAlpha", "InertieContrôle",
+        "DominateurLent", "DistanceContrôle", "void.sigma", "shhh.kael", "rixh.zero",
+        "raito.eyes", "myst.kr", "stoïx.kvn", "zxnith.exe", "unmove.man",
+        "ice.from.me", "s1lent.dox", "Le Sixième", "Le Dernier Mot", "La Faille",
+        "Le Sans-Nom", "PointFinal", "ArchitecteMuet", "L’Indifférent", "RéflexePur",
+        "Le Spectateur", "Machiave", "SilentEdge", "ColdShadow", "IronMind",
+        "GhostWalker", "PhantomStrike", "DarkPulse", "SilentEcho", "MindBender",
+        "ShadowCraft", "SteelResolve", "IceVein", "LoneWolf", "ZeroNoise",
+        "FrostByte", "BlackQuartz", "CipherX", "AlphaShade", "NoirPhantom"
+      ],
+      filles: [
+        "lvna.rose", "vxnia", "cryssette", "shokko.mp4", "mirälyn", "naeclipse",
+        "s0ul.babe", "dahlia.kvn", "angelglitch", "ellie.vibe", "vxminelle",
+        "bloom404", "bîtsune", "melancholia", ".mira.noir", "vanityvoid", "yume.nox",
+        "sierra.fury", "noirwïfe", "serene.kills", "MakimaMood", "LadyShhh",
+        "JolieMensonge", "Madame404", "VenusTrouble", "Miss.Spectra", "CalmeFatale",
+        "Nikita.exe", "RoseFroide", "SyrënaX", "Mentalina", "MortelleFée", "DollZéro",
+        "VioletteCinglée", "Bitch.In.Plans", "DemoiselleDesTénèbres", "EllieMania",
+        "Miss.Cauchemar", "IceBloom", "Cruelessa", "LunaMyst", "Elyra", "NovaStar",
+        "Saphira", "Zyra", "CleoMoon", "FayeVex", "Isya", "MiraNoir", "SeleneSky",
+        "Talia", "Vexa", "NyxAura", "AuraLux", "Emberly", "LyraMist", "ZaraVox"
+      ],
+      humour: [
+        "Zbeulman", "Kékekévin", "Paul à Gomme", "Ton.pseudo.est.mieux", "Dripfond",
+        "Brizox le Crac", "Jean-Mi Vortex", "FauxZlatan", "Lourdimal", "Golri.exe",
+        "SwagMaster69", "PikachuFan", "TotoLeBoss", "MegaGiga123", "NoobSlayerX",
+        "YoloSwag", "LOLinator", "CringeLord", "SaucisseEnFeu", "FoufouDuNet",
+        "EpicFail", "MemeQueen", "GigaTroll", "SqueezieFan", "RoflCopter",
+        "BananaToast", "TikTokStar420", "CheeseNuggets", "LourdMaisCool", "ZiziLeMagnifique",
+        "BurgerKiller", "SauceChien", "PatateFolle", "BidonMax", "MegaClash"
+      ],
+      personnage: [
+        "SaulGoodman", "GusFring", "LightYagami", "Ayanokoji", "SatoruGojo",
+        "TonyStark", "WalterWhite", "Luffy", "Naruto", "Lelouch", "Makima",
+        "Power", "Denji", "SpikeSpiegel", "Végéta", "Joker", "HarleyQuinn",
+        "Meruem", "LeviAckerman", "Saitama", "Dazai", "Killua", "Kurapika",
+        "ErenYeager", "ZeroTwo", "IchigoKurosaki", "ReiAyanami", "KanekiKen",
+        "ShotoTodoroki", "MikasaAckerman", "Alucard", "Goku", "Vegeta", "NarutoUzumaki",
+        "SasukeUchiha", "RoronoaZoro", "L", "Light", "Kira", "Yagami", "Spike",
+        "Walter", "Jesse", "JessiePinkman", "Saul"
+      ],
+      celebrites: [
+        "Eminem", "Drake", "Beyoncé", "Kanye", "Adele", "Rihanna", "Kendrick",
+        "Billie", "Shakira", "TheWeeknd", "DaftPunk", "Coldplay", "PostMalone",
+        "Miley", "BrunoMars", "Ariana", "JustinBieber", "CardiB", "EdSheeran",
+        "Lizzo", "TaylorSwift", "NickiMinaj", "DuaLipa", "TravisScott", "Sia",
+        "ImagineDragons", "ShawnMendes", "SelenaGomez", "Khalid", "LilNasX",
+        "PostMalone", "MeganTheeStallion", "CamilaCabello", "ChrisBrown",
+        "SamSmith", "Halsey", "JasonDerulo"
+      ],
+      digital: [
+        "Neon.exe", "Cry0byte", "Datalux", "SpectraX", "NX-404", "VirusZéro",
+        "ObsolèteV2", "Loop404", "Plasmik", "CyberShade", "PixelRush", "GlitchKing",
+        "BitCrusher", "CodeFury", "DataStorm", "QuantumByte", "Hacktivist",
+        "NullPointer", "DarkMode", "Firewall", "Bytewave", "CyberGhost", "TechnoMancer",
+        "MegaPixel", "Error404", "CodeBreaker", "DarkWeb", "ByteMaster", "DataPhantom",
+        "HackShade", "BinaryGhost", "SignalLost", "CrypticByte", "NeoMatrix"
+      ],
+      cringe: [
+        "SwagMaster69", "PikachuFan", "TotoLeBoss", "MegaGiga123", "NoobSlayerX",
+        "YoloSwag", "LOLinator", "CringeLord", "SaucisseEnFeu", "FoufouDuNet",
+        "EpicFail", "MemeQueen", "GigaTroll", "SqueezieFan", "RoflCopter",
+        "BananaToast", "TikTokStar420", "CheeseNuggets", "LourdMaisCool",
+        "ZiziLeMagnifique", "BurgerKiller", "SauceChien", "PatateFolle",
+        "BidonMax", "MegaClash", "SaucissonFou", "RageQuit", "KebabHero",
+        "TropMoche", "MdrLOL", "ChaussetteSale", "GlandeurPro", "MegaNoob"
+      ]
+    };
+
+    let currentMode = 'classique';
+
+    function setMode(mode) {
+      currentMode = mode;
+      document.body.className = mode + '-mode';
+
+      // Update active button style
+      document.querySelectorAll('#modeButtons button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.getElementById('btn' + capitalize(mode)).classList.add('active');
+
+      // Reset pseudo text
+      document.getElementById('pseudo').innerText = "Clique pour générer un blaze";
+    }
+
+    function generate() {
+      const list = pseudos[currentMode];
+      const random = list[Math.floor(Math.random() * list.length)];
+      document.getElementById('pseudo').innerText = random;
+    }
+
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+  </script
